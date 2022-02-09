@@ -29,3 +29,7 @@ git push -u origin main
 ```
 
 dvc repro
+
+dvc metrics show
+
+dvc metrics diff
