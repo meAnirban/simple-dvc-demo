@@ -28,12 +28,18 @@ git branch -M main
 git push -u origin main
 ```
 
+oneliner updates for readme
+```bash
+git add . && git commit -m "update Readme.md"
+```
+
+```bash
 dvc repro
 
 dvc metrics show
 
 dvc metrics diff
-
+```
 
 tox command -
 ```bash
