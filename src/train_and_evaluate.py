@@ -1,5 +1,5 @@
 # load train and test files
-# train algorithm 
+# train algorithm
 # save the metrics and parameters
 
 import os
@@ -36,19 +36,19 @@ def train_and_evaluate(config_path):
 
     target = [config["base"]["target_col"]]
 
-    train = pd.read_csv(train_data_path, sep = ",")
-    test = pd.read_csv(test_data_path, sep = ",")
+    train = pd.read_csv(train_data_path, sep=",")
+    test = pd.read_csv(test_data_path, sep=",")
 
     train_y = train[target]
     test_y = test[target]
-    train_x = train.drop(target, axis = 1)
-    test_x = test.drop(target, axis = 1)
+    train_x = train.drop(target, axis=1)
+    test_x = test.drop(target, axis=1)
 
     lr = ElasticNet(
-        alpha= alpha,
-        l1_ratio= l1_ratio,
-        random_state= random_state
-        )
+        alpha=alpha,
+        l1_ratio=l1_ratio,
+        random_state=random_state
+    )
     lr.fit(train_x, train_y)
 
     predicted_qualities = lr.predict(test_x)
@@ -67,26 +67,24 @@ def train_and_evaluate(config_path):
         scores = {
             "rmse": rmse,
             "mae": mae,
-            "r2":r2
+            "r2": r2
         }
-        json.dump(scores, f, indent= 4)
-    
+        json.dump(scores, f, indent=4)
+
     with open(params_file, "w") as f:
         params = {
             "alpha": alpha,
             "l1_ratio": l1_ratio
         }
-        json.dump(params, f, indent= 4)
+        json.dump(params, f, indent=4)
 
-    os.makedirs(model_dir, exist_ok= True)
+    os.makedirs(model_dir, exist_ok=True)
     model_path = os.path.join(model_dir, "model.joblib")
 
     joblib.dump(lr, model_path)
 
 
-
-
-if __name__=="__main__":
+if __name__ == "__main__":
     args = argparse.ArgumentParser()
     args.add_argument("--config", default="params.yaml")
     parsed_args = args.parse_args()
