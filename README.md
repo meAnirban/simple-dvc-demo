@@ -80,3 +80,7 @@ mlflow server    --backend-store-uri sqlite:///mlflow.db    --default-artifact-r
 for my localhost
 
 mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root artifacts --host 0.0.0.0 -p 1234
+
+
+find the app - 
+https://wine-abhowmi-4991.herokuapp.com/
